@@ -1,0 +1,44 @@
+<?php
+
+
+require_once __DIR__.'/../../vendor/autoload.php';
+
+$app = new Silex\Application();
+$app['debug'] = true;
+
+$blogPost = array (
+	1 => array (
+		'title' => 'Blog - 1',
+		'date' => '2015-04-05'
+	),
+	2 => array (
+		'title' => 'Blog - 2',
+		'date' => '2015-04-05'
+	)
+
+);
+
+$app->get('/blog', function () use ($blogPost) {
+	$output = '';
+	foreach($blogPost as $post) {
+		$output .= $post['title'] ;
+		$output .= '<br />';
+	}
+	return $output;
+}); 
+
+$app->get('/blog/{$id}', function(Silex\Application $app, $id) use ($blogPost) {
+	if(!isset($blogPost[$id])) {
+		$app->abort(404,'$id does not exists');
+	}
+	
+	$post = $blogPost[$id];
+	
+	return "<h1>".$post['title']."</h1>"."<p>".$post['date']."</p>" ;
+}); 
+
+$app->run();
+
+
+?>
+

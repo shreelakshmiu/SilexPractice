@@ -1,0 +1,53 @@
+<?php
+/*
+ *Other general methods can be used
+*/
+$app->put('/blog/{id}', function ($id) {
+    // ...
+});
+
+$app->delete('/blog/{id}', function ($id) {
+    // ...
+});
+
+$app->patch('/blog/{id}', function ($id) {
+    // ...
+});
+
+/*
+ * match method
+*/
+
+$app->match('/blog', function () {
+    // ...
+});
+
+$app->match('/blog', function () {
+    // ...
+})
+->method('PATCH');
+
+$app->match('/blog', function () {
+    // ...
+})
+->method('PUT|POST');
+
+/*
+ * Different Routing variables
+*/
+
+
+$app->get('/blog/{id}', function ($id) {
+    // ...
+});
+
+$app->get('/blog/{postId}/{commentId}', function ($postId, $commentId) {
+    // ...
+});
+
+$app->get('/blog/{postId}/{commentId}', function ($commentId, $postId) { // could also do this but not recommended.
+    // ...
+});
+
+
+?>

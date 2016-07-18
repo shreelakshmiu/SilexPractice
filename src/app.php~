@@ -1,0 +1,8 @@
+<?php
+
+echo 'rwewrwer'; die;
+$app->mount('/myfirstclass', new MyApp\MyClassController());
+
+return $app;
+
+?>
